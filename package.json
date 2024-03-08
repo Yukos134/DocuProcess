@@ -1,27 +1,28 @@
 {
-  "name": "docuprocess",
+  "name": "docu-process",
   "version": "1.0.0",
   "description": "Take Home Test - Platform",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "npx ts-node index.ts",
-    "lint": "eslint .",
-    "test": "NODE_ENV=test mocha --harmony --reporter spec --require should */test.js"
+    "start:dev": "npx ts-node src/index.ts",
+    "start:prod": "npm run build && node dist/index.js",
+    "test": "NODE_ENV=test mocha --harmony --reporter spec --require should */test.js",
+    "remove-npm": "rm -rf node_modules || rd /s /q node_modules",
+    "clear-cache": "rm -rf .cache || rd /s /q .cache",
+    "cleanup": "yarn clear-cache && yarn remove-npm"
   },
   "keywords": [],
   "author": "Yukos134",
   "dependencies": {
-    "eslint": "^8.57.0",
+    "@koa/router": "^12.0.1",
+    "cluster": "^0.7.7",
     "koa": "^2.15.0",
-    "koa-router": "^12.0.1"
+    "koa-bodyparser": "^4.4.1"
   },
   "devDependencies": {
     "@types/koa": "^2.15.0",
-    "@types/koa-router": "^7.4.8",
-    "mocha": "^10.3.0",
-    "should": "^13.2.3"
+    "@types/koa__router": "^12.0.4",
+    "@types/koa-bodyparser": "^4.3.12"
   },
-  "engines": {
-    "node": ">= 7.6"
-  }
+  "license": "MIT"
 }
