@@ -1,8 +1,5 @@
-import cluster, { Worker } from "cluster";
-import os from "os";
 import { Context } from "koa";
 import database from "../database/database.connector";
-import { Document } from "../models/document.model";
 
 class DocumentService {
   public async getDocument(ctx: Context): Promise<void> {

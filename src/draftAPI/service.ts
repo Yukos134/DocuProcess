@@ -91,8 +91,7 @@ class DraftService {
         ctx.body = { error: "Draft not found" };
         return;
       }
-
-      await database.publishDraft(id);
+      await database.publishDraft(existingDraft);
 
       ctx.status = 200;
       ctx.body = { message: "Draft published successfully", existingDraft };
