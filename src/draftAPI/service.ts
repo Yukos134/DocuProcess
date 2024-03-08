@@ -6,11 +6,8 @@ import { DocumentData } from "../types";
 class DraftService {
   public async createDraft(ctx: Context): Promise<void> {
     try {
-      console.log("DraftService ctx=", ctx);
-
       const { title, content, creatorId, documentId } = ctx.request
         .body as DocumentData;
-      console.log("DraftService title=", title);
 
       const draft: Draft = {
         title,
@@ -20,7 +17,6 @@ class DraftService {
         lastUpdatedDate: new Date(),
         lastUpdateAuthorId: creatorId,
       };
-      console.log("DraftService draft=", draft);
 
       const createdDraft = await database.createDraft(draft, documentId);
       ctx.status = 201;
@@ -95,8 +91,7 @@ class DraftService {
         ctx.body = { error: "Draft not found" };
         return;
       }
-
-      await database.publishDraft(id);
+      await database.publishDraft(existingDraft);
 
       ctx.status = 200;
       ctx.body = { message: "Draft published successfully", existingDraft };
